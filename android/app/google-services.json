@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1082051762387",
+    "project_id": "currency-rate-calculator-26a3a",
+    "storage_bucket": "currency-rate-calculator-26a3a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082051762387:android:4d8a49ce86c7756b8e1c26",
+        "android_client_info": {
+          "package_name": "com.example.currency_rate_calculator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVJF7wSg2_CkZUdlYgRJ3kJ9hjpnNzBRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
