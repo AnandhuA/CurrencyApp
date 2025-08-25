@@ -1,7 +1,10 @@
 import 'package:currency_rate_calculator/core/utils/validators.dart';
+import 'package:currency_rate_calculator/repository/auth_repo.dart';
 import 'package:currency_rate_calculator/screens/authentication/login_screen.dart';
+import 'package:currency_rate_calculator/widgets/alert_diloge.dart';
 import 'package:currency_rate_calculator/widgets/custom_button.dart';
 import 'package:currency_rate_calculator/widgets/custom_text_feild.dart';
+import 'package:currency_rate_calculator/widgets/show_animation.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -18,6 +21,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final TextEditingController _nameController = TextEditingController();
 
+  final AuthRepo _authRepo = AuthRepo();
+
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
 
@@ -28,7 +33,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (_formKey.currentState!.validate()) {
       setState(() => isLoading = true);
       try {
-        await Future.delayed(const Duration(seconds: 1));
+        final user = await _authRepo.signUp(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+
+        if (user != null && mounted) {
+             await LottieAnimation.showSuccess(
+          context: context,
+          onCompleted: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const LoginScreen()),
+            );
+          },
+        );
+        }
+      } on AuthException catch (e) {
+        if (mounted) {
+          showErrorDialog(context, e.message);
+        }
+      } catch (e) {
+        if (mounted) {
+          showErrorDialog(context, "An unexpected error occurred.");
+        }
       } finally {
         if (mounted) setState(() => isLoading = false);
       }

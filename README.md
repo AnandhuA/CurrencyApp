@@ -1,16 +1,20 @@
-# currency_rate_calculator
+# 💱 Currency Rate Calculator
 
-A new Flutter project.
+A Flutter application to convert currencies with live exchange rates, offline caching, and support for multiple environments using `--dart-define`.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Setup
 
-A few resources to get you started if this is your first Flutter project:
+### Requirements
+- **Flutter**: 3.32.6 (stable)  
+- **Dart**: 3.8.1  
+- **DevTools**: 2.45.1  
+- **Hive**: for local caching  
+- **BLoC**: for state management  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Clone & Install
+```sh
+git clone https://github.com/your-repo/currency_rate_calculator.git
+cd currency_rate_calculator
+flutter pub get

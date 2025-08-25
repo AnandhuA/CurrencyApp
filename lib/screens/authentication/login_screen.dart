@@ -1,9 +1,12 @@
 import 'package:currency_rate_calculator/core/utils/validators.dart';
 import 'package:currency_rate_calculator/repository/auth_repo.dart';
+import 'package:currency_rate_calculator/repository/user_prefs_repo.dart';
 import 'package:currency_rate_calculator/screens/authentication/sign_up_screen.dart';
 import 'package:currency_rate_calculator/screens/home_screen.dart';
+import 'package:currency_rate_calculator/widgets/alert_diloge.dart';
 import 'package:currency_rate_calculator/widgets/custom_button.dart';
 import 'package:currency_rate_calculator/widgets/custom_text_feild.dart';
+import 'package:currency_rate_calculator/widgets/show_animation.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -34,17 +37,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
         if (user != null) {
           if (context.mounted) {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-              (route) => false,
+            await LottieAnimation.showSuccess(
+              context: context,
+              onCompleted: () async {
+                await UserPrefsRepo.setLoggedIn(true);
+
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  (route) => false,
+                );
+              },
             );
           }
         }
       } on AuthException catch (e) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(e.message)));
+        if (context.mounted) {
+          showErrorDialog(context, e.message);
+        }
       } finally {
         if (mounted) setState(() => isLoading = false);
       }

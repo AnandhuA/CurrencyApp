@@ -1,3 +1,5 @@
+import 'package:currency_rate_calculator/repository/user_prefs_repo.dart';
+import 'package:currency_rate_calculator/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 
@@ -14,22 +16,31 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 1400), () {
-      if (!mounted) return;
-      Navigator.of(context).pushReplacement(
-        PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 500),
-          pageBuilder: (_, __, ___) => const LoginScreen(),
-          transitionsBuilder: (_, animation, __, child) {
-            final curved = CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeOut,
-            );
-            return FadeTransition(opacity: curved, child: child);
-          },
-        ),
-      );
-    });
+    _navigate();
+  }
+
+  Future<void> _navigate() async {
+    // wait for splash animation
+    await Future.delayed(const Duration(milliseconds: 1400));
+
+    if (!mounted) return;
+
+    final loggedIn = await UserPrefsRepo.isLoggedIn();
+
+    Navigator.of(context).pushReplacement(
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 500),
+        pageBuilder: (_, __, ___) =>
+            loggedIn ? const HomeScreen() : const LoginScreen(),
+        transitionsBuilder: (_, animation, __, child) {
+          final curved = CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeOut,
+          );
+          return FadeTransition(opacity: curved, child: child);
+        },
+      ),
+    );
   }
 
   @override
