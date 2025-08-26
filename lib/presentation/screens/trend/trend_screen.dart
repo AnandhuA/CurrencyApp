@@ -30,12 +30,12 @@ class TrendScreen extends StatelessWidget {
                     drawHorizontalLine: true,
                     drawVerticalLine: true,
                     getDrawingHorizontalLine: (value) => FlLine(
-                      color: Colors.grey.withOpacity(0.3),
+                      color: Colors.grey.withValues(alpha: 0.3),
                       strokeWidth: 1,
                       dashArray: [5, 5], // dashed style (optional)
                     ),
                     getDrawingVerticalLine: (value) => FlLine(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: Colors.grey.withValues(alpha: 0.2),
                       strokeWidth: 1,
                     ),
                   ),
@@ -100,7 +100,7 @@ class TrendScreen extends StatelessWidget {
                         show: true,
                         gradient: LinearGradient(
                           colors: [
-                            Colors.green.withOpacity(0.3),
+                            Colors.green.withValues(alpha: 0.3),
                             Colors.transparent,
                           ],
                           begin: Alignment.topCenter,
