@@ -1,4 +1,6 @@
+import 'package:currency_rate_calculator/models/currency_model.dart';
 import 'package:currency_rate_calculator/models/currency_pair_model.dart';
+import 'package:currency_rate_calculator/models/responce_model.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class RecentPairsRepository {
@@ -6,36 +8,30 @@ class RecentPairsRepository {
 
   /// Add a new pair with flag & code
   Future<void> addRecentPair({
-    required String fromCode,
-    required String fromFlag,
-    required String toCode,
-    required String toFlag,
+    required Currency fromCurrency,
+    required Currency toCurrency,
+    required ResponseModel result
   }) async {
     final pair = CurrencyPair(
-      fromCode: fromCode,
-      fromFlag: fromFlag,
-      toCode: toCode,
-      toFlag: toFlag,
+      fromCurrency: fromCurrency,
+      toCurrency: toCurrency,
+      result: result,
+     
     );
 
-    // Prevent duplicate entries
     final exists = _box.values.any((p) =>
-        p.fromCode == fromCode &&
-        p.toCode == toCode &&
-        p.fromFlag == fromFlag &&
-        p.toFlag == toFlag);
+        p.fromCurrency == fromCurrency && p.toCurrency == toCurrency,
+    );
 
     if (!exists) {
       await _box.add(pair);
     }
   }
 
-  /// Get all saved pairs
   List<CurrencyPair> getRecentPairs() {
-    return _box.values.toList().reversed.toList(); // latest first
+    return _box.values.toList().reversed.toList(); 
   }
 
-  /// Optional: Clear all
   Future<void> clearRecentPairs() async {
     await _box.clear();
   }

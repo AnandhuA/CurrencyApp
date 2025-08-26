@@ -63,62 +63,70 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            spacing: 30,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Login",
-                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-              ),
-
-              CustomTextFeild(
-                validator: Validators.email,
-                hint: "Email",
-                controller: _emailController,
-              ),
-              CustomTextFeild(
-                validator: Validators.password,
-                hint: "Password",
-                isPassword: true,
-                controller: _passwordController,
-              ),
-              CustomButton(
-                onPressed: _onLoginPressed,
-                title: "Login",
-                isLoading: isLoading,
-              ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Don't have an account? "),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(
-                        context,
-                      ).push(MaterialPageRoute(builder: (_) => SignUpScreen()));
-                    },
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                      foregroundColor: Theme.of(context).colorScheme.primary,
-                    ),
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        decoration: TextDecoration.underline,
+    return GestureDetector(
+      onTap: () {
+        if (FocusScope.of(context).hasPrimaryFocus == false &&
+            FocusScope.of(context).focusedChild != null) {
+          FocusScope.of(context).unfocus();
+        }
+      },
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              spacing: 30,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Login",
+                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                ),
+      
+                CustomTextFeild(
+                  validator: Validators.email,
+                  hint: "Email",
+                  controller: _emailController,
+                ),
+                CustomTextFeild(
+                  validator: Validators.password,
+                  hint: "Password",
+                  isPassword: true,
+                  controller: _passwordController,
+                ),
+                CustomButton(
+                  onPressed: _onLoginPressed,
+                  title: "Login",
+                  isLoading: isLoading,
+                ),
+      
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Don't have an account? "),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(
+                          context,
+                        ).push(MaterialPageRoute(builder: (_) => SignUpScreen()));
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        foregroundColor: Theme.of(context).colorScheme.primary,
+                      ),
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

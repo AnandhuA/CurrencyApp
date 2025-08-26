@@ -10,7 +10,8 @@ class AuthRepo {
         email: email,
         password: password,
       );
-      return credential.user;
+        await credential.user?.reload();
+      return _auth.currentUser;
     } on FirebaseAuthException catch (e) {
       throw AuthException(message: _getErrorMessage(e));
     } catch (e) {
@@ -22,13 +23,16 @@ class AuthRepo {
   Future<User?> signUp({
     required String email,
     required String password,
+    required String name,
   }) async {
     try {
       final credential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return credential.user;
+            await credential.user?.updateDisplayName(name);
+      await credential.user?.reload();
+      return _auth.currentUser;
     } on FirebaseAuthException catch (e) {
       throw AuthException(message: _getErrorMessage(e));
     } catch (e) {

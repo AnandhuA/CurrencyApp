@@ -1,5 +1,7 @@
+import 'package:currency_rate_calculator/convert_bloc/convert_bloc.dart';
 import 'package:currency_rate_calculator/models/currency_pair_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class RecentPairsWidget extends StatelessWidget {
@@ -32,8 +34,20 @@ class RecentPairsWidget extends StatelessWidget {
             Wrap(
               spacing: 8,
               children: pairs.map((pair) {
-                return _ChipWidget(
-                  "${pair.fromFlag} ${pair.fromCode} → ${pair.toFlag} ${pair.toCode}",
+                return GestureDetector(
+                  onTap: () {
+                    context.read<ConvertBloc>().add(
+                      CurrencyOfflineConvertEvent(
+                        pair: pair,
+                        amount: 0,
+                        from: pair.fromCurrency,
+                        to: pair.toCurrency,
+                      ),
+                    );
+                  },
+                  child: _ChipWidget(
+                    "${pair.fromCurrency.flag} ${pair.fromCurrency.code} → ${pair.toCurrency.flag} ${pair.toCurrency.code}",
+                  ),
                 );
               }).toList(),
             ),

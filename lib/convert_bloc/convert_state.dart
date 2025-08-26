@@ -18,3 +18,21 @@ final class ConvertErrorState extends ConvertState {
 
   ConvertErrorState({required this.error});
 }
+
+
+
+final class ConvertOfflineLoadedState extends ConvertState {
+  final CurrencyPair pair;
+  final String convertedAmount;
+  final Currency from;
+  final Currency to;
+  final ResponseModel result;
+
+  ConvertOfflineLoadedState({
+    required this.pair,
+    required this.convertedAmount,
+    required this.from,
+    required this.to,
+    required this. result
+  });
+}

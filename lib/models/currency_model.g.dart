@@ -1,38 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'currency_pair_model.dart';
+part of 'currency_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CurrencyPairAdapter extends TypeAdapter<CurrencyPair> {
+class CurrencyAdapter extends TypeAdapter<Currency> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
-  CurrencyPair read(BinaryReader reader) {
+  Currency read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return CurrencyPair(
-      fromCurrency: fields[0] as Currency,
-      toCurrency: fields[1] as Currency,
-      result: fields[2] as ResponseModel,
+    return Currency(
+      code: fields[0] as String,
+      name: fields[1] as String,
+      flag: fields[2] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, CurrencyPair obj) {
+  void write(BinaryWriter writer, Currency obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.fromCurrency)
+      ..write(obj.code)
       ..writeByte(1)
-      ..write(obj.toCurrency)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.result);
+      ..write(obj.flag);
   }
 
   @override
@@ -41,7 +41,7 @@ class CurrencyPairAdapter extends TypeAdapter<CurrencyPair> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CurrencyPairAdapter &&
+      other is CurrencyAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

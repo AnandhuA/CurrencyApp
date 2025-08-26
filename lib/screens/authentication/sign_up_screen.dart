@@ -36,6 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         final user = await _authRepo.signUp(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
+          name: _nameController.text.trim()
         );
 
         if (user != null && mounted) {
@@ -64,66 +65,76 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            spacing: 30,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "SignUp",
-                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-              ),
-              CustomTextFeild(
-                validator: Validators.name,
-                hint: "Name",
-                controller: _nameController,
-              ),
-              CustomTextFeild(
-                hint: "Email",
-                validator: Validators.email,
-                controller: _emailController,
-              ),
-              CustomTextFeild(
-                validator: Validators.password,
-                hint: "Password",
-                isPassword: true,
-                controller: _passwordController,
-              ),
-              CustomButton(
-                onPressed: _onSignUpPressed,
-                title: "Sign Up",
-                isLoading: isLoading,
-              ),
+    return GestureDetector(
+      onTap: () {
+        if (FocusScope.of(context).hasPrimaryFocus == false &&
+            FocusScope.of(context).focusedChild != null) {
+          FocusScope.of(context).unfocus();
+        }
+      },
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              spacing: 30,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "SignUp",
+                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                ),
+                CustomTextFeild(
+                  validator: Validators.name,
+                  hint: "Name",
+                  controller: _nameController,
+                ),
+                CustomTextFeild(
+                  hint: "Email",
+                  validator: Validators.email,
+                  controller: _emailController,
+                ),
+                CustomTextFeild(
+                  validator: Validators.password,
+                  hint: "Password",
+                  isPassword: true,
+                  controller: _passwordController,
+                ),
+                CustomButton(
+                  onPressed: _onSignUpPressed,
+                  title: "Sign Up",
+                  isLoading: isLoading,
+                ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("You already have an account? "),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const LoginScreen()),
-                      );
-                    },
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                      foregroundColor: Theme.of(context).colorScheme.primary,
-                    ),
-                    child: const Text(
-                      'Sign In',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        decoration: TextDecoration.underline,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("You already have an account? "),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const LoginScreen(),
+                          ),
+                        );
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        foregroundColor: Theme.of(context).colorScheme.primary,
+                      ),
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

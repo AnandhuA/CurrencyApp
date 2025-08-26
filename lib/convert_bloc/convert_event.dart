@@ -4,8 +4,8 @@ part of 'convert_bloc.dart';
 sealed class ConvertEvent {}
 
 final class CurrencyConvertEvent extends ConvertEvent{
-  final String from;
-  final String to;
+  final Currency from;
+  final Currency to;
   final double amount;
   final String fromFlag;
   final String toFlag;
@@ -19,3 +19,17 @@ final class CurrencyConvertEvent extends ConvertEvent{
   });
 } 
 
+
+final class CurrencyOfflineConvertEvent extends ConvertEvent {
+  final CurrencyPair pair;
+  final double amount;
+  final Currency from;
+  final Currency to;
+
+  CurrencyOfflineConvertEvent({
+    required this.pair,
+    required this.amount,
+    required this.from,
+    required this.to,
+  });
+}

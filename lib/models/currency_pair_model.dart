@@ -1,4 +1,6 @@
 
+import 'package:currency_rate_calculator/models/currency_model.dart';
+import 'package:currency_rate_calculator/models/responce_model.dart';
 import 'package:hive_flutter/adapters.dart';
 
 part 'currency_pair_model.g.dart';
@@ -6,21 +8,19 @@ part 'currency_pair_model.g.dart';
 @HiveType(typeId: 0)
 class CurrencyPair {
   @HiveField(0)
-  final String fromCode;
-
+  final Currency fromCurrency;
   @HiveField(1)
-  final String fromFlag;
+  final Currency toCurrency;
 
-  @HiveField(2)
-  final String toCode;
+@HiveField(2)
+  final ResponseModel result;
 
-  @HiveField(3)
-  final String toFlag;
+
+
 
   CurrencyPair({
-    required this.fromCode,
-    required this.fromFlag,
-    required this.toCode,
-    required this.toFlag,
+    required this.fromCurrency,
+    required this.toCurrency,
+    required this.result
   });
 }
