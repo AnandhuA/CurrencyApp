@@ -1,6 +1,8 @@
 import 'package:currency_rate_calculator/repository/user_prefs_repo.dart';
 import 'package:currency_rate_calculator/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
 import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -61,24 +63,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
-                      Icons.currency_exchange_rounded,
-                      size: 96,
-                      color: color,
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      'ThoughtBox',
-                      style: Theme.of(context).textTheme.headlineMedium
-                          ?.copyWith(fontWeight: FontWeight.w700),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'Currency Rate Calculator',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).hintColor,
-                      ),
-                    ),
+                  
+                    Lottie.asset("assets/animations/Loading.json"),
+                   
                   ],
                 ),
               ),

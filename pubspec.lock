@@ -166,6 +166,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.4"
+  cli_util:
+    dependency: transitive
+    description:
+      name: cli_util
+      sha256: ff6785f7e9e3c38ac98b2fb035701789de90154024a75b6cb926445e83197d1c
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.2"
   clock:
     dependency: transitive
     description:
@@ -371,6 +379,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.1.1"
+  flutter_launcher_icons:
+    dependency: "direct dev"
+    description:
+      name: flutter_launcher_icons
+      sha256: "526faf84284b86a4cb36d20a5e45147747b7563d921373d4ee0559c54fcdbcea"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -477,6 +493,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.2"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      sha256: "4e973fcf4caae1a4be2fa0a13157aa38a8f9cb049db6529aa00b4d71abc4d928"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.5.4"
   intl:
     dependency: "direct main"
     description:
@@ -541,6 +565,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      sha256: "55d6c23a6c15db14920e037fe7e0dc32e7cdaf3b64b4b25df2d541b5b6b81c0c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.1"
   logging:
     dependency: transitive
     description:
@@ -597,6 +629,54 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  native_splash_screen:
+    dependency: "direct main"
+    description:
+      name: native_splash_screen
+      sha256: fa79c6efa1650a3038ea28129e9097019f016bc1e385d95ada42900aa8c62ec4
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+  native_splash_screen_cli:
+    dependency: "direct dev"
+    description:
+      name: native_splash_screen_cli
+      sha256: "9f9f4acde49416ecb286b2421afc00a45eee9a4380a3cceaab98ab80f82fa178"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
+  native_splash_screen_linux:
+    dependency: transitive
+    description:
+      name: native_splash_screen_linux
+      sha256: "0b22aef68df012d3e26d6f5dc22e119578b968d8e5502de6f76758727944a37b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+  native_splash_screen_macos:
+    dependency: transitive
+    description:
+      name: native_splash_screen_macos
+      sha256: cb49012650eefa71b59da2c937ea251f99e1fd7113884474dfe66bb0a64487d9
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+  native_splash_screen_platform_interface:
+    dependency: transitive
+    description:
+      name: native_splash_screen_platform_interface
+      sha256: "8644f673942ff6247571ce94ede4a63c5d4d9b316805be4296a0a63a4918ad1b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+  native_splash_screen_windows:
+    dependency: transitive
+    description:
+      name: native_splash_screen_windows
+      sha256: "16d4a65349dca2e63ebea325bb7ee9c2df2f1f54b89edc057591b09dbd8b72b0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   nested:
     dependency: transitive
     description:

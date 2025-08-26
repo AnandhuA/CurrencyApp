@@ -4,6 +4,7 @@ import 'package:currency_rate_calculator/convert_bloc/convert_bloc.dart';
 import 'package:currency_rate_calculator/json_parsing/parsing_cubit.dart';
 import 'package:currency_rate_calculator/models/currency_model.dart';
 import 'package:currency_rate_calculator/models/responce_model.dart';
+import 'package:currency_rate_calculator/screens/trend_screen.dart';
 import 'package:currency_rate_calculator/widgets/alert_diloge.dart';
 import 'package:currency_rate_calculator/widgets/custom_button.dart';
 import 'package:currency_rate_calculator/widgets/recent_pair_widget.dart';
@@ -211,9 +212,41 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ],
                           ),
                         ),
+                        SizedBox(height: 30),
+                        CustomButton(
+                          onPressed: () {
+                            if (_fromCurrency != null && _toCurrency != null) {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20),
+                                  ),
+                                ),
+                                builder: (_) => SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.75,
+                                  child: TrendScreen(
+                                    from: _fromCurrency!.code,
+                                    to: _toCurrency!.code,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              showErrorDialog(
+                                context,
+                                "Please select currencies first.",
+                              );
+                            }
+                          },
+                          title: "Show 5-Day Trend",
+                        ),
 
                         const SizedBox(height: 24),
                         RecentPairsWidget(),
+                       
+                       
                       ],
                     ),
                   );
