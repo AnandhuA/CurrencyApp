@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:currency_rate_calculator/models/currency_model.dart';
-import 'package:currency_rate_calculator/models/currency_pair_model.dart';
-import 'package:currency_rate_calculator/models/responce_model.dart';
-import 'package:currency_rate_calculator/repository/currency_repo.dart';
-import 'package:currency_rate_calculator/repository/recent_pairs_repository.dart';
+import 'package:currency_rate_calculator/data/models/currency_model.dart';
+import 'package:currency_rate_calculator/data/models/currency_pair_model.dart';
+import 'package:currency_rate_calculator/data/models/responce_model.dart';
+import 'package:currency_rate_calculator/domain/repository/currency_repo.dart';
+import 'package:currency_rate_calculator/domain/repository/recent_pairs_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

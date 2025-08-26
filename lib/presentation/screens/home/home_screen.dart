@@ -1,5 +1,5 @@
-import 'package:currency_rate_calculator/screens/dashboard_screen.dart';
-import 'package:currency_rate_calculator/screens/profile_screen.dart';
+import 'package:currency_rate_calculator/presentation/screens/dashboard/dashboard_screen.dart';
+import 'package:currency_rate_calculator/presentation/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 

@@ -1,5 +1,5 @@
-import 'package:currency_rate_calculator/convert_bloc/convert_bloc.dart';
-import 'package:currency_rate_calculator/models/currency_pair_model.dart';
+import 'package:currency_rate_calculator/bloc/convert_bloc/convert_bloc.dart';
+import 'package:currency_rate_calculator/data/models/currency_pair_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';

@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:currency_rate_calculator/models/trend_point_model.dart';
+import 'package:currency_rate_calculator/data/models/trend_point_model.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 

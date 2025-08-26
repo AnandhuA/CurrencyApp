@@ -1,13 +1,13 @@
 import 'dart:developer';
 
-import 'package:currency_rate_calculator/convert_bloc/convert_bloc.dart';
-import 'package:currency_rate_calculator/json_parsing/parsing_cubit.dart';
-import 'package:currency_rate_calculator/models/currency_model.dart';
-import 'package:currency_rate_calculator/models/responce_model.dart';
-import 'package:currency_rate_calculator/screens/trend_screen.dart';
-import 'package:currency_rate_calculator/widgets/alert_diloge.dart';
-import 'package:currency_rate_calculator/widgets/custom_button.dart';
-import 'package:currency_rate_calculator/widgets/recent_pair_widget.dart';
+import 'package:currency_rate_calculator/bloc/convert_bloc/convert_bloc.dart';
+import 'package:currency_rate_calculator/bloc/json_parsing/parsing_cubit.dart';
+import 'package:currency_rate_calculator/data/models/currency_model.dart';
+import 'package:currency_rate_calculator/data/models/responce_model.dart';
+import 'package:currency_rate_calculator/presentation/screens/trend/trend_screen.dart';
+import 'package:currency_rate_calculator/presentation/widgets/alert_diloge.dart';
+import 'package:currency_rate_calculator/presentation/widgets/custom_button.dart';
+import 'package:currency_rate_calculator/presentation/widgets/recent_pair_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

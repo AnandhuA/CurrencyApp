@@ -1,59 +1,61 @@
 import 'package:currency_rate_calculator/core/utils/validators.dart';
-import 'package:currency_rate_calculator/repository/auth_repo.dart';
-import 'package:currency_rate_calculator/repository/user_prefs_repo.dart';
-import 'package:currency_rate_calculator/screens/authentication/sign_up_screen.dart';
-import 'package:currency_rate_calculator/screens/home_screen.dart';
-import 'package:currency_rate_calculator/widgets/alert_diloge.dart';
-import 'package:currency_rate_calculator/widgets/custom_button.dart';
-import 'package:currency_rate_calculator/widgets/custom_text_feild.dart';
-import 'package:currency_rate_calculator/widgets/show_animation.dart';
+import 'package:currency_rate_calculator/domain/repository/auth_repo.dart';
+import 'package:currency_rate_calculator/presentation/screens/authentication/login_screen.dart';
+import 'package:currency_rate_calculator/presentation/widgets/alert_diloge.dart';
+import 'package:currency_rate_calculator/presentation/widgets/custom_button.dart';
+import 'package:currency_rate_calculator/presentation/widgets/custom_text_feild.dart';
+import 'package:currency_rate_calculator/presentation/animations/show_animation.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController _emailController = TextEditingController();
+
+  final TextEditingController _passwordController = TextEditingController();
+
+  final TextEditingController _nameController = TextEditingController();
+
+  final AuthRepo _authRepo = AuthRepo();
+
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final AuthRepo _auth = AuthRepo();
 
   //----- button press ---
 
-  Future<void> _onLoginPressed() async {
+  Future<void> _onSignUpPressed() async {
     if (isLoading) return;
     if (_formKey.currentState!.validate()) {
       setState(() => isLoading = true);
       try {
-        final user = await _auth.login(
+        final user = await _authRepo.signUp(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
+          name: _nameController.text.trim()
         );
 
-        if (user != null) {
-          if (context.mounted) {
-            await LottieAnimation.showSuccess(
-              context: context,
-              onCompleted: () async {
-                await UserPrefsRepo.setLoggedIn(true);
-
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                  (route) => false,
-                );
-              },
+        if (user != null && mounted) {
+             await LottieAnimation.showSuccess(
+          context: context,
+          onCompleted: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const LoginScreen()),
             );
-          }
+          },
+        );
         }
       } on AuthException catch (e) {
-        if (context.mounted) {
+        if (mounted) {
           showErrorDialog(context, e.message);
+        }
+      } catch (e) {
+        if (mounted) {
+          showErrorDialog(context, "An unexpected error occurred.");
         }
       } finally {
         if (mounted) setState(() => isLoading = false);
@@ -79,14 +81,18 @@ class _LoginScreenState extends State<LoginScreen> {
               spacing: 30,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Login",
+                Text(
+                  "SignUp",
                   style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
                 ),
-      
                 CustomTextFeild(
-                  validator: Validators.email,
+                  validator: Validators.name,
+                  hint: "Name",
+                  controller: _nameController,
+                ),
+                CustomTextFeild(
                   hint: "Email",
+                  validator: Validators.email,
                   controller: _emailController,
                 ),
                 CustomTextFeild(
@@ -96,27 +102,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _passwordController,
                 ),
                 CustomButton(
-                  onPressed: _onLoginPressed,
-                  title: "Login",
+                  onPressed: _onSignUpPressed,
+                  title: "Sign Up",
                   isLoading: isLoading,
                 ),
-      
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don't have an account? "),
+                    const Text("You already have an account? "),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(
-                          context,
-                        ).push(MaterialPageRoute(builder: (_) => SignUpScreen()));
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const LoginScreen(),
+                          ),
+                        );
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                         foregroundColor: Theme.of(context).colorScheme.primary,
                       ),
                       child: const Text(
-                        'Sign Up',
+                        'Sign In',
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           decoration: TextDecoration.underline,

@@ -1,9 +1,9 @@
-import 'package:currency_rate_calculator/repository/user_prefs_repo.dart';
-import 'package:currency_rate_calculator/screens/home_screen.dart';
+import 'package:currency_rate_calculator/domain/repository/user_prefs_repo.dart';
+import 'package:currency_rate_calculator/presentation/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'login_screen.dart';
+import '../authentication/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -47,7 +47,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final color = Theme.of(context).colorScheme.primary;
     return Scaffold(
       body: Center(
         child: TweenAnimationBuilder<double>(
@@ -62,11 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 scale: scale,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                  
-                    Lottie.asset("assets/animations/Loading.json"),
-                   
-                  ],
+                  children: [Lottie.asset("assets/animations/Loading.json")],
                 ),
               ),
             );

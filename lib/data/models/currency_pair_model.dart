@@ -1,6 +1,6 @@
 
-import 'package:currency_rate_calculator/models/currency_model.dart';
-import 'package:currency_rate_calculator/models/responce_model.dart';
+import 'package:currency_rate_calculator/data/models/currency_model.dart';
+import 'package:currency_rate_calculator/data/models/responce_model.dart';
 import 'package:hive_flutter/adapters.dart';
 
 part 'currency_pair_model.g.dart';

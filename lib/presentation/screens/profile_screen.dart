@@ -1,6 +1,6 @@
-import 'package:currency_rate_calculator/repository/recent_pairs_repository.dart';
-import 'package:currency_rate_calculator/repository/user_prefs_repo.dart';
-import 'package:currency_rate_calculator/screens/authentication/login_screen.dart';
+import 'package:currency_rate_calculator/domain/repository/recent_pairs_repository.dart';
+import 'package:currency_rate_calculator/domain/repository/user_prefs_repo.dart';
+import 'package:currency_rate_calculator/presentation/screens/authentication/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

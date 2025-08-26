@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:currency_rate_calculator/models/responce_model.dart';
+import 'package:currency_rate_calculator/data/models/responce_model.dart';
 import 'package:dio/dio.dart';
-import '../../../core/config/env_config.dart';
+import '../../../../core/config/env_config.dart';
 
 class CurrencyRepository {
   final Dio _dio = Dio();

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:currency_rate_calculator/models/currency_model.dart';
+import 'package:currency_rate_calculator/data/models/currency_model.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 Future<List<Currency>> loadCurrencies() async {
